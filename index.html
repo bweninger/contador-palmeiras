@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Devolvam o Palmeiras</title>
+  <title>Desfrutômetro</title>
   <style>
     :root {
       --verde: #006437;
@@ -24,26 +24,44 @@
       text-align: center;
       padding: 24px;
     }
-    header h1 {
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
-      text-transform: uppercase;
+    .selo {
+      display: inline-block;
+      font-size: 0.8rem;
       letter-spacing: 3px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin-bottom: 18px;
+      opacity: 0.9;
+    }
+    header h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: 4px;
       margin-bottom: 12px;
     }
-    header p {
-      font-size: clamp(1rem, 2.5vw, 1.4rem);
-      max-width: 720px;
-      margin: 0 auto 40px;
-      line-height: 1.5;
+    header h2 {
+      font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 28px;
       opacity: 0.95;
     }
-    header p strong { color: var(--branco); border-bottom: 2px solid var(--branco); }
+    header p {
+      font-size: clamp(1rem, 2.4vw, 1.25rem);
+      max-width: 760px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      opacity: 0.95;
+    }
+    header p strong { border-bottom: 2px solid var(--branco); }
     .contador {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 16px;
-      margin-bottom: 40px;
+      margin-bottom: 28px;
     }
     .bloco {
       background: var(--branco);
@@ -66,6 +84,11 @@
       letter-spacing: 2px;
       font-weight: 600;
     }
+    .legenda {
+      font-size: 1rem;
+      margin-bottom: 28px;
+      opacity: 0.9;
+    }
     .data {
       font-size: 1.1rem;
       background: rgba(255,255,255,0.15);
@@ -74,6 +97,23 @@
       padding: 10px 24px;
       display: inline-block;
     }
+    .conquistas {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 760px;
+    }
+    .conquista {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .conquista b { display: block; font-size: 1.05rem; margin-bottom: 2px; }
     footer {
       margin-top: 48px;
       font-size: 1.3rem;
@@ -90,10 +130,14 @@
 </head>
 <body>
   <header>
-    <h1>Devolvam o Palmeiras</h1>
+    <div class="selo">Medidor oficial de desfrute</div>
+    <h1>Desfrutômetro</h1>
+    <h2>"Desfrutem." — e nós estamos desfrutando. Muito.</h2>
     <p>
-      Tempo restante para a <strong>Vascaína</strong>, o <strong>Diretor Comédia</strong>
-      e a <strong>Farsa Portuguesa</strong> devolverem o Palmeiras para a sua torcida.
+      Tempo restante para continuarmos desfrutando da gestão impecável da
+      <strong>Vascaína</strong>, da genialidade do <strong>Diretor Comédia</strong>
+      e do futebol envolvente da <strong>Farsa Portuguesa</strong>.
+      Que privilégio ver o Flamengo levantar taça enquanto a gente comemora o vice.
     </p>
   </header>
 
@@ -104,11 +148,19 @@
       <div class="bloco"><div class="num" id="minutos">--</div><div class="rot">Minutos</div></div>
       <div class="bloco"><div class="num" id="segundos">--</div><div class="rot">Segundos</div></div>
     </div>
-    <div class="fim" id="fim" hidden>O Palmeiras é da torcida de novo! 🐷</div>
-    <div class="data">31 de dezembro de 2027</div>
+    <div class="legenda">de puro desfrute ainda pela frente 🥲</div>
+    <div class="fim" id="fim" hidden>Acabou o desfrute. O Palmeiras é da torcida de novo! 🐷</div>
+    <div class="data">Fim do mandato: 31 de dezembro de 2027</div>
+
+    <section class="conquistas">
+      <div class="conquista"><b>🥈 Vice</b>Nossa posição favorita na tabela. Tradição é tradição.</div>
+      <div class="conquista"><b>🔴⚫ Flamengo</b>Nosso freguês. Só que ao contrário.</div>
+      <div class="conquista"><b>💼 Planejamento</b>Impecável. Basta não olhar o resultado.</div>
+      <div class="conquista"><b>🎭 Coletiva</b>Melhor espetáculo da semana. O jogo, nem tanto.</div>
+    </section>
   </main>
 
-  <footer>Avanti Palestra 💚</footer>
+  <footer>Avanti Palestra 💚 (apesar de tudo)</footer>
 
   <script>
     const alvo = new Date(2027, 11, 31, 23, 59, 59); // 31/12/2027 23:59:59 (horário local)
@@ -126,6 +178,7 @@
       const diff = alvo - new Date();
       if (diff <= 0) {
         el.contador.hidden = true;
+        document.querySelector('.legenda').hidden = true;
         el.fim.hidden = false;
         clearInterval(timer);
         return;
