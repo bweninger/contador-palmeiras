@@ -1,5 +1,9 @@
 {
   "name": "contador-palmeiras",
   "compatibility_date": "2026-09-11",
-  "assets": { "directory": "./" }
+  "assets": { "directory": "./" },
+  "routes": [
+    { "pattern": "desfrutometro.com", "custom_domain": true },
+    { "pattern": "www.desfrutometro.com", "custom_domain": true }
+  ]
 }
